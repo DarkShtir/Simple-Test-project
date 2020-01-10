@@ -1,3 +1,26 @@
+.pure-form{
+    display: flex;
+    justify-content: center;
+}
+.question{
+    width:800px;
+    height: 100px;
+    margin: 10px auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+}
+.answer-btn, .next{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px auto;
+}
+.pure-button-primary{
+    display: flex;
+    margin: 0 auto;
+}
 .button-success, .button-error, .button-warning {
     color: white;
     border-radius: 4px;
@@ -14,4 +37,10 @@
 
 .button-warning {
     background: rgb(223, 117, 20); /* this is an orange */
+}
+.finish-form{
+    margin: 150px auto;
+    font-size: 25px;
+    width: 600px;
+    text-align: center;
 }

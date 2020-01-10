@@ -18,7 +18,7 @@ class User {
 		this.amountTrueAnswers = 0;
 	}
 	getFullName() {
-		return `Player: ${this.firstName} ${this.lastName}`;
+		return `${this.firstName} ${this.lastName}`;
 	}
 	setLevel(level) {
 		if (level === 'EASY') {
@@ -116,6 +116,188 @@ const taskArr = [
 		],
 		rightAnswer: 'Они никогда не встречаются',
 	},
+	{
+		level: 2,
+		question: 'Какой формы Земля? Вопрос с подвохом',
+		countAnswers: 4,
+		answersArr: ['Диск', 'Круг', 'Геоид', 'Шар'],
+		rightAnswer: 'Геоид',
+	},
+	{
+		level: 2,
+		question: 'Из чего состоят облака?',
+		countAnswers: 4,
+		answersArr: [
+			'Из капель воды и кристалов льда',
+			'Из смеси газов',
+			'Из ваты',
+			'Из пыли',
+		],
+		rightAnswer: 'Из капель воды и кристалов льда',
+	},
+	{
+		level: 2,
+		question: 'Что такое картофель? Не торопитесь с ответом',
+		countAnswers: 4,
+		answersArr: ['Клубнеплод', 'Корнеплод', 'Фрукт', 'Ягода'],
+		rightAnswer: 'Клубнеплод',
+	},
+	{
+		level: 2,
+		question: 'Почему дует ветер?',
+		countAnswers: 4,
+		answersArr: [
+			'Потому что деревья качаются',
+			'Из-за космических процессов',
+			'Потому что Земля вертится',
+			'Из-за разницы в атмосферном давлении',
+		],
+		rightAnswer: 'Из-за разницы в атмосферном давлении',
+	},
+	{
+		level: 2,
+		question: 'Самая высокая гора — это…',
+		countAnswers: 4,
+		answersArr: ['Килиманджаро', 'Аконкагуа', 'Эльбрус', 'Эверест'],
+		rightAnswer: 'Эверест',
+	},
+	{
+		level: 2,
+		question: 'Где живут пингвины?',
+		countAnswers: 4,
+		answersArr: ['Арктика', 'Гренландия', 'Россия', 'Антарктида'],
+		rightAnswer: 'Антарктида',
+	},
+	{
+		level: 2,
+		question:
+			'Как у растений называется процесс образования питательных веществ с помощью энергии света?',
+		countAnswers: 4,
+		answersArr: [
+			'Люминесценция',
+			'Фотосинтез',
+			'Соляризация',
+			'Флуоресценция',
+		],
+		rightAnswer: 'Фотосинтез',
+	},
+	{
+		level: 2,
+		question: 'Что представляет собой зрачок?',
+		countAnswers: 4,
+		answersArr: [
+			'Стекловидное тело',
+			'Слепое пятно',
+			'Пигментное пятно на радужке',
+			'Отверстие в радужной оболочке глаза',
+		],
+		rightAnswer: 'Отверстие в радужной оболочке глаза',
+	},
+	{
+		level: 2,
+		question: 'Почему при болезни повышается температура?',
+		countAnswers: 4,
+		answersArr: [
+			'Так действует вирус',
+			'Крови становится больше',
+			'Организм борется с вирусом',
+			'От потери сил',
+		],
+		rightAnswer: 'Организм борется с вирусом',
+	},
+	{
+		level: 2,
+		question:
+			'А что происходит при повышении температуры тела до 42 градусов?',
+		countAnswers: 4,
+		answersArr: [
+			'Сворачивается белок',
+			'Закипает кровь',
+			'Останавливается сердце',
+			'Лопаются глаза',
+		],
+		rightAnswer: 'Сворачивается белок',
+	},
+	{
+		level: 3,
+		question: 'Кто был вторым человеком на Луне?',
+		countAnswers: 4,
+		answersArr: [
+			'Нил Армстронг',
+			'Юрий Гагарин',
+			'Базз Олдрин',
+			'Джон Ленон',
+		],
+		rightAnswer: 'Базз Олдрин',
+	},
+	{
+		level: 3,
+		question: 'Энтомология — это наука, которая изучает:',
+		countAnswers: 4,
+		answersArr: ['Культуры', 'Общество', 'Преступность', 'Насекомых'],
+		rightAnswer: 'Насекомых',
+	},
+	{
+		level: 3,
+		question: 'Эритрея — это страна в:',
+		countAnswers: 4,
+		answersArr: ['Африке', 'Европе', 'Америках', 'Азии'],
+		rightAnswer: 'Африке',
+	},
+	{
+		level: 3,
+		question: 'Какая религия самая многочисленная в мире?',
+		countAnswers: 4,
+		answersArr: ['Христианство', 'Ислам', 'Буддизм', 'Индуизм'],
+		rightAnswer: 'Христианство',
+	},
+	{
+		level: 3,
+		question: 'Туба относится к _________ инструментам.',
+		countAnswers: 4,
+		answersArr: ['Духовым', 'Щипковым', 'Клавишным', 'Смычковым'],
+		rightAnswer: 'Духовым',
+	},
+	{
+		level: 3,
+		question: 'Где находится Стоунхендж?',
+		countAnswers: 4,
+		answersArr: ['В Австралии', 'В Англии', 'В Германии', 'В Норвегии'],
+		rightAnswer: 'В Англии',
+	},
+	{
+		level: 3,
+		question: 'Лошадь живёт _____ лет.',
+		countAnswers: 4,
+		answersArr: ['25-30', '35-40', '5-10', '45-50'],
+		rightAnswer: '25-30',
+	},
+	{
+		level: 3,
+		question: 'Древние индуистские писания написаны на:',
+		countAnswers: 4,
+		answersArr: ['Фарси', 'Санскрите', 'Иврите', 'Руничиском языке'],
+		rightAnswer: 'Санскрите',
+	},
+	{
+		level: 3,
+		question: 'Какой самый маленький в мире океан?',
+		countAnswers: 4,
+		answersArr: [
+			'Северный Ледовитый океан',
+			'Индийский океан',
+			'Тихий океан',
+			'Атлантический',
+		],
+		rightAnswer: 'Северный Ледовитый океан',
+	},
+	{
+		level: 3,
+		question: 'Пабло Пикассо был:',
+		countAnswers: 4,
+		answersArr: ['Мексиканцем', 'Бразильцем', 'Испанцем', 'Индусом'],
+		rightAnswer: 'Испанцем',
+	},
 ];
 
 class Model extends EventEmmiter {
@@ -137,23 +319,18 @@ class Model extends EventEmmiter {
 			}
 		});
 		this.arrOfQuestion = this.shuffle(this.arrOfQuestion);
-		console.log(this.arrOfQuestion);
 	}
 
 	checkAnswer(answer, numQuestion) {
 		if (answer == this.arrOfQuestion[numQuestion - 1].rightAnswer) {
 			this.userArr[0].amountTrueAnswers++;
 			this.emitter('trueAnswer', answer);
-			console.log('Green Button');
-			console.log('Record number answer in person');
 		} else {
 			this.emitter('falseAnswer', answer);
 			this.emitter(
 				'trueAnswer',
 				this.arrOfQuestion[numQuestion - 1].rightAnswer
 			);
-			console.log('Red button');
-			console.log('Indicate right answer');
 		}
 	}
 	getQuestion(obj) {
@@ -208,39 +385,52 @@ class Controller extends EventEmmiter {
 				let level = document.querySelector('#level').value;
 				this.model.createNewUser(firstName, lastName, level);
 				this.model.createArrOfQuestion();
+				this.view.hiddenForm();
+				this.view.showQuestion();
 				this.getAmountQuestions();
 				this.renderQuestion(this.numberQuestion);
 			}
-			let questionBtn = document.querySelector('.form-test');
-			questionBtn.addEventListener('click', e => {
-				e.preventDefault();
-				if (e.target.classList.contains('answer-1')) {
-					this.model.checkAnswer(
-						e.target.textContent,
-						this.numberQuestion
-					);
-				} else if (e.target.classList.contains('answer-2')) {
-					this.model.checkAnswer(
-						e.target.textContent,
-						this.numberQuestion
-					);
-				} else if (e.target.classList.contains('answer-3')) {
-					this.model.checkAnswer(
-						e.target.textContent,
-						this.numberQuestion
-					);
-				} else if (e.target.classList.contains('answer-4')) {
-					this.model.checkAnswer(
-						e.target.textContent,
-						this.numberQuestion
-					);
-				} else if (e.target.classList.contains('next')) {
-					this.renderQuestion(this.numberQuestion);
-					console.log(
-						'Теперь ты нажимаешь на клавишу СЛЕДУЮЩИЙ ВОПРОС'
-					);
-				}
-			});
+		});
+		let questionBtn = document.querySelector('.form-test');
+		questionBtn.addEventListener('click', e => {
+			e.preventDefault();
+			if (e.target.classList.contains('answer-1')) {
+				this.model.checkAnswer(
+					e.target.textContent,
+					this.numberQuestion
+				);
+			} else if (e.target.classList.contains('answer-2')) {
+				this.model.checkAnswer(
+					e.target.textContent,
+					this.numberQuestion
+				);
+			} else if (e.target.classList.contains('answer-3')) {
+				this.model.checkAnswer(
+					e.target.textContent,
+					this.numberQuestion
+				);
+			} else if (e.target.classList.contains('answer-4')) {
+				this.model.checkAnswer(
+					e.target.textContent,
+					this.numberQuestion
+				);
+			} else if (e.target.classList.contains('next')) {
+				this.renderQuestion(this.numberQuestion);
+				console.log('Теперь ты нажимаешь на клавишу СЛЕДУЮЩИЙ ВОПРОС');
+			}
+		});
+	}
+	newGame() {
+		let newGameBtn = document.querySelector('.finish-game');
+		newGameBtn.addEventListener('click', e => {
+			e.preventDefault();
+			if (e.target.classList.contains('new-game-btn')) {
+				location.reload(true);
+				// console.log('Нажал клавишу новая игра');
+				// this.numberQuestion = 0;
+				// this.amountQuestions = 0;
+				// this.start();
+			}
 		});
 	}
 	getAmountQuestions() {
@@ -262,9 +452,9 @@ class Controller extends EventEmmiter {
 	finishGame() {
 		let right = this.model.userArr[0].amountTrueAnswers;
 		let points = (right * 100) / this.amountQuestions;
-		console.log(
-			`${this.model.userArr[0].getFullName()} правильно ответил на ${points}% вопросов`
-		);
+		let fullName = this.model.userArr[0].getFullName();
+		this.view.finishGame(fullName, points);
+		this.newGame();
 	}
 	trueAnswer(answer) {
 		let btn = document.querySelectorAll('.answer-btn');
@@ -321,7 +511,6 @@ class View {
 	}
 	enableBtn() {
 		let answerBtn = document.querySelectorAll('.answer-btn');
-		console.log(answerBtn);
 		answerBtn.forEach(value => {
 			value.classList.remove('pure-button-disabled');
 		});
@@ -330,6 +519,24 @@ class View {
 		let nextBtn = document.querySelector('.next');
 		nextBtn.classList.add('button-warning');
 		nextBtn.classList.remove('pure-button-disabled');
+	}
+	finishGame(fullName, points) {
+		let finishForm = document.querySelector('.finish-form');
+		let newGameBtn = document.querySelector('.new-game-btn');
+
+		newGameBtn.classList.remove('hidden');
+		finishForm.classList.remove('hidden');
+		this.hiddenQuestion();
+		finishForm.textContent = `Пользователь ${fullName} правильно ответил на ${points}% вопросов!`;
+	}
+	hiddenForm() {
+		document.querySelector('.form-login').classList.add('hidden');
+	}
+	showQuestion() {
+		document.querySelector('.form-test').classList.remove('hidden');
+	}
+	hiddenQuestion() {
+		document.querySelector('.form-test').classList.add('hidden');
 	}
 }
 const view = new View();
