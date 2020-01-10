@@ -1,9 +1,21 @@
+class EventEmmiter {
+	constructor() {
+		this.events = {};
+	}
+	on(event, listener) {
+		(this.events[event] || (this.events[event] = [])).push(listener);
+		return this;
+	}
+	emitter(event, arg) {
+		(this.events[event] || []).slice().forEach(lsn => lsn(arg));
+	}
+}
 class User {
 	constructor(firstName, lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.level = 0;
-		this.rightAnswers = [];
+		this.amountTrueAnswers = 0;
 	}
 	getFullName() {
 		return `Player: ${this.firstName} ${this.lastName}`;
@@ -106,13 +118,14 @@ const taskArr = [
 	},
 ];
 
-class Model {
+class Model extends EventEmmiter {
 	constructor() {
+		super();
 		this.userArr = [];
 		this.arrOfQuestion = [];
 		self = this;
 	}
-	createNewUser(firstName, lastName, level) {
+	createNewUser(firstName = 'Неизвестный', lastName = 'Опоссум', level) {
 		const newUser = new User(firstName, lastName);
 		newUser.setLevel(level);
 		this.userArr.push(newUser);
@@ -129,15 +142,20 @@ class Model {
 
 	checkAnswer(answer, numQuestion) {
 		if (answer == this.arrOfQuestion[numQuestion - 1].rightAnswer) {
+			this.userArr[0].amountTrueAnswers++;
+			this.emitter('trueAnswer', answer);
 			console.log('Green Button');
 			console.log('Record number answer in person');
 		} else {
+			this.emitter('falseAnswer', answer);
+			this.emitter(
+				'trueAnswer',
+				this.arrOfQuestion[numQuestion - 1].rightAnswer
+			);
 			console.log('Red button');
 			console.log('Indicate right answer');
 		}
 	}
-	// Пока непонятно нужен ли этот метод!
-	// createQuestion(arrOfQuestion) {}
 	getQuestion(obj) {
 		return obj.question;
 	}
@@ -160,12 +178,19 @@ class Model {
 	}
 }
 
-class Controller {
+class Controller extends EventEmmiter {
 	constructor(model, view) {
+		super();
 		this.model = model;
 		this.view = view;
-		this.amountQuestion = 0;
+		this.amountQuestions = 0;
 		this.numberQuestion = 0;
+		model.on('trueAnswer', answer => {
+			this.trueAnswer(answer);
+		});
+		model.on('falseAnswer', answer => {
+			this.falseAnswer(answer);
+		});
 	}
 	start() {
 		let formBtn = document.querySelector('.form-login');
@@ -173,14 +198,18 @@ class Controller {
 			e.preventDefault();
 			if (e.target.tagName === 'BUTTON' && this.numberQuestion === 0) {
 				let firstName = document.querySelector('#firstName').value;
+				if (firstName === '') {
+					firstName = 'Неопознанный';
+				}
 				let lastName = document.querySelector('#lastName').value;
+				if (lastName === '') {
+					lastName = 'Опоссум';
+				}
 				let level = document.querySelector('#level').value;
 				this.model.createNewUser(firstName, lastName, level);
 				this.model.createArrOfQuestion();
-				this.getAmountQuestion();
+				this.getAmountQuestions();
 				this.renderQuestion(this.numberQuestion);
-			} else {
-				console.log('Ответь на вопрос, или нажми СЛЕДЮЩИЙ');
 			}
 			let questionBtn = document.querySelector('.form-test');
 			questionBtn.addEventListener('click', e => {
@@ -214,18 +243,46 @@ class Controller {
 			});
 		});
 	}
-	getAmountQuestion() {
-		this.amountQuestion = this.model.arrOfQuestion.length;
+	getAmountQuestions() {
+		this.amountQuestions = this.model.arrOfQuestion.length;
 	}
 	renderQuestion(num) {
-		if (num < this.amountQuestion) {
+		if (num < this.amountQuestions) {
 			this.view.setQuestion(this.model.arrOfQuestion[num].question);
 			this.view.setAnswer(
 				this.model.shuffle(this.model.arrOfQuestion[num].answersArr)
 			);
 			this.numberQuestion++;
 			console.log(this.numberQuestion);
+			this.view.enableBtn();
+		} else {
+			this.finishGame();
 		}
+	}
+	finishGame() {
+		let right = this.model.userArr[0].amountTrueAnswers;
+		let points = (right * 100) / this.amountQuestions;
+		console.log(
+			`${this.model.userArr[0].getFullName()} правильно ответил на ${points}% вопросов`
+		);
+	}
+	trueAnswer(answer) {
+		let btn = document.querySelectorAll('.answer-btn');
+		btn.forEach((element, index) => {
+			if (element.textContent === answer) {
+				this.view.trueAnswer(index + 1);
+			}
+		});
+		this.view.nextQuestion();
+		this.view.disabledBtn();
+	}
+	falseAnswer(answer) {
+		let btn = document.querySelectorAll('.answer-btn');
+		btn.forEach((element, index) => {
+			if (element.textContent === answer) {
+				this.view.falseAnswer(index + 1);
+			}
+		});
 	}
 }
 
@@ -238,8 +295,41 @@ class View {
 	setAnswer(answers) {
 		answers.forEach((element, index) => {
 			let answerBtn = document.querySelector(`.answer-${index + 1}`);
+			answerBtn.classList.remove('button-success');
+			answerBtn.classList.remove('button-error');
+			let nextBtn = document.querySelector('.next');
+			nextBtn.classList.remove('button-warning');
+			nextBtn.classList.add('pure-button-disabled');
 			answerBtn.textContent = element;
 		});
+	}
+	trueAnswer(index) {
+		document
+			.querySelector(`.answer-${index}`)
+			.classList.add('button-success');
+	}
+	falseAnswer(index) {
+		document
+			.querySelector(`.answer-${index}`)
+			.classList.add('button-error');
+	}
+	disabledBtn() {
+		let answerBtn = document.querySelectorAll('.answer-btn');
+		answerBtn.forEach(value => {
+			value.classList.add('pure-button-disabled');
+		});
+	}
+	enableBtn() {
+		let answerBtn = document.querySelectorAll('.answer-btn');
+		console.log(answerBtn);
+		answerBtn.forEach(value => {
+			value.classList.remove('pure-button-disabled');
+		});
+	}
+	nextQuestion() {
+		let nextBtn = document.querySelector('.next');
+		nextBtn.classList.add('button-warning');
+		nextBtn.classList.remove('pure-button-disabled');
 	}
 }
 const view = new View();
